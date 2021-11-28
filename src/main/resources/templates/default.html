@@ -1,15 +1,22 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<title>main</title>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Main page</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body align="center">
 	<div style="margin: 100px 300px 10px 300px">
-	<h1>Main page</h1><br><br>
-	<div class="btn-group-lg">
-	<a href="/productlist" class="btn btn-info">Products</a>
-	<a href="/deliverylist" class="btn btn-info">Deliveries</a>
-	</div>
+		<h2 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h2>
+		<br> <br>
+		<div class="btn-group-lg">
+			<a href="/productlist" class="btn btn-info">Products</a> <a
+				href="/deliverylist" class="btn btn-info">Deliveries</a>
+		</div>
+		<br>
+		<form th:action="@{/logout}" method="POST">
+			<input type="submit" value="Sign Out" class="btn btn-dark btn-sm" />
+		</form>
 	</div>
 </body>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"

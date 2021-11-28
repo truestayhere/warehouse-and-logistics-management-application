@@ -30,6 +30,10 @@
 					id="time" th:field="*{time}" class="form-control" />
 			</div>
 			<div class="form-group">
+				<label for="basket" class="form-label">Basket</label> <input type="text"
+					id="basket" th:field="*{basket}" class="form-control" />
+			</div>
+			<div class="form-group">
 				<label for="status">Status</label> <select id="status"
 					th:field="*{status}" class="form-control">
 					<option value="Unfulfilled">Unfulfilled</option>
@@ -41,6 +45,7 @@
 				<input type="submit" class="btn btn-primary" value="Save"></input>
 			</div>
 		</form>
+		<a href="/deliverylist" class="btn btn-link">Return</a>
 	</div>
 </body>
 </html>

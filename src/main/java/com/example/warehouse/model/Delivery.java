@@ -22,11 +22,7 @@ public class Delivery {
 	
 	private String time;
 	
-	private int quantity;
-	
-	private double totalWeight;
-	
-	private double cost;
+	private String basket;
 	
 	private String status;
 	
@@ -34,14 +30,12 @@ public class Delivery {
 	public Delivery() {}
 
 
-	public Delivery(String deliveryNumber, String date, String time, int quantity, double totalWeight, double cost, String status) {
+	public Delivery(String deliveryNumber, String date, String time, String basket, String status) {
 		super();
 		this.deliveryNumber = deliveryNumber;
 		this.date = date;
 		this.time = time;
-		this.totalWeight = totalWeight;
-		this.quantity = quantity;
-		this.cost = cost;
+		this.basket = basket;
 		this.status = status;
 	}
 
@@ -76,33 +70,13 @@ public class Delivery {
 	}
 
 
-	public double getTotalWeight() {
-		return totalWeight;
+	public String getBasket() {
+		return basket;
 	}
 
 
-	public void setTotalWeight(double totalWeight) {
-		this.totalWeight = totalWeight;
-	}
-
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-
-	public double getCost() {
-		return cost;
-	}
-
-
-	public void setCost(double cost) {
-		this.cost = cost;
+	public void setBasket(String busket) {
+		this.basket = busket;
 	}
 
 
@@ -129,13 +103,10 @@ public class Delivery {
 
 	@Override
 	public String toString() {
-		return "Delivery [deliveryid=" + deliveryid + ", deliveryNumber=" + deliveryNumber + ", date=" + date + ", time=" + time
-				+ ", quantity=" + quantity + ", totalWeight=" + totalWeight + ", cost="
-				+ cost + ", status=" + status + "]";
+		return "Delivery [deliveryid=" + deliveryid + ", deliveryNumber=" + deliveryNumber + ", date=" + date
+				+ ", time=" + time + ", basket=" + basket + ", status=" + status + "]";
 	}
 
-
-	
 	
 
 }

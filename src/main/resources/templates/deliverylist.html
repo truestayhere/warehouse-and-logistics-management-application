@@ -23,9 +23,9 @@
 				<td th:text="${delivery.time}"></td>
 				<td th:text="${delivery.status}"></td>
 				<td><a
-					th:href="@{/busket/delivery/{id}(id=${delivery.deliveryid})}"
-					class="btn btn-info btn-sm">Busket</a></td>
-				<td>
+					th:href="@{/basket/delivery/{id}(id=${delivery.deliveryid})}"
+					class="btn btn-info btn-sm">Basket</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')">
 					<div class="btn-group-sm">
 						<a th:href="@{/delete/delivery/{id}(id=${delivery.deliveryid})}"
 							class="btn btn-danger btn-sm">Delete</a> <a
@@ -37,7 +37,7 @@
 		</table>
 	</div>
 	<div class="btn-group-sm">
-		<a href="/" class="btn btn-link">Main page</a> <a href="/add/delivery"
+		<a href="/" class="btn btn-link">Main page</a> <a sec:authorize="hasAuthority('ADMIN')" href="/add/delivery"
 			class="btn btn-success">Add Delivery</a>
 	</div>
 	<br>

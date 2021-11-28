@@ -13,6 +13,8 @@ import com.example.warehouse.model.Delivery;
 import com.example.warehouse.model.DeliveryRepository;
 import com.example.warehouse.model.Product;
 import com.example.warehouse.model.ProductRepository;
+import com.example.warehouse.model.User;
+import com.example.warehouse.model.UserRepository;
 
 @SpringBootApplication
 public class WarehouseApplication {
@@ -21,19 +23,19 @@ public class WarehouseApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WarehouseApplication.class, args);
 	}
-
+	
 	@Bean
 	public CommandLineRunner demo(DeliveryRepository drepository, ProductRepository prepository,
-			CategoryRepository crepository) {
+			CategoryRepository crepository, UserRepository urepository) {
 		return args -> {
 
 			// Create new orders:
 			log.info("save a couple of deliveries");
 
-			Delivery delivery1 = new Delivery("211111", "30.11.2021", "12:00", 0, 0, 0, "Unfulfilled");
-			Delivery delivery2 = new Delivery("311341", "14.12.2021", "16:30", 0, 0, 0, "Unfulfilled");
-			Delivery delivery3 = new Delivery("271441", "05.10.2021", "14:00", 0, 0, 0, "Fulfilled");
-			Delivery delivery4 = new Delivery("000000", "00.00.0000", "00:00", 0, 0, 0, "Delivered");
+			Delivery delivery1 = new Delivery("211111", "30.11.2021", "12:00", "Empty", "Unfulfilled");
+			Delivery delivery2 = new Delivery("311341", "14.12.2021", "16:30", "Empty", "Unfulfilled");
+			Delivery delivery3 = new Delivery("271441", "05.10.2021", "14:00", "Empty", "Fulfilled");
+			Delivery delivery4 = new Delivery("000000", "00.00.0000", "00:00", "Empty", "Delivered");
 
 			drepository.save(delivery1);
 			drepository.save(delivery2);
@@ -66,6 +68,16 @@ public class WarehouseApplication {
 			prepository.save(product3);
 			prepository.save(product4);
 			prepository.save(product5);
+			
+			
+			// Create users admin/admin user/user  
+			// Passwords secured with BCrypt hashing
+			
+			User user1 = new User("user", "$2a$10$hPMQYM/.ED19d99LBLkmH.sFEEmle/bnBDb8ySwqSIj6j/vl.WUDG", "USER");
+			User user2 = new User("admin", "$2a$10$aWHR7WdURs25/GxDITY/3OxURra0D6YBUVpMAtxlbaA8dp1Vrgd6O", "ADMIN");
+			urepository.save(user1);
+			urepository.save(user2);
+			
 
 			log.info("fetch all products");
 			for (Product product : prepository.findAll()) {
@@ -75,6 +87,11 @@ public class WarehouseApplication {
 			log.info("fetch all deliveries");
 			for (Delivery delivery : drepository.findAll()) {
 				log.info(delivery.toString());
+			}
+			
+			log.info("fetch all users");
+			for (User user : urepository.findAll()) {
+				log.info(user.toString());
 			}
 
 		};

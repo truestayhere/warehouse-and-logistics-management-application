@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Basket</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel='stylesheet' href='/css/bootstrap.min.css' type='text/css'
+	media='all'>
+</head>
+<body align="center">
+	<div style="margin: 20px 300px 10px 300px;">
+		<h2>Basket:</h2>
+		<form th:object="${delivery}">
+			<label for="deliveryid" class="form-label"></label> <input
+				id="basket" th:field="*{basket}" class="form-control" />
+		</form><br>
+		<a href="/deliverylist" class="btn btn-link">Return</a>
+	</div>
+</body>
+</html>

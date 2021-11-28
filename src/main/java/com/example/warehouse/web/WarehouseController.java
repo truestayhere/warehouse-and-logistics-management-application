@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,18 @@ public class WarehouseController {
 	
 	@Autowired
 	private CategoryRepository crepository;
+	
+	// Log in 
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "login";
+	}
+	
+	//Log out
+	@RequestMapping(value= "/logout")
+	public String logout() {
+		return "logout";
+	}
 
 	// Default page
 
@@ -45,6 +58,7 @@ public class WarehouseController {
 	}
 
 	@RequestMapping(value = "/add/product")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String addProduct(Model model) {
 		model.addAttribute("product", new Product());
 		model.addAttribute("categories", crepository.findAll());
@@ -58,12 +72,14 @@ public class WarehouseController {
 	}
 
 	@RequestMapping(value = "/delete/product/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteProduct(@PathVariable("id") Long productId, Model model) {
 		prepository.deleteById(productId);
 		return "redirect:http://localhost:8080/productlist";
 	}
 
 	@RequestMapping(value = "/edit/product/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ADMIN')")
 	public String editProduct(@PathVariable("id") Long productId, Model model) {
 		model.addAttribute("product", prepository.findById(productId));
 		model.addAttribute("categories", crepository.findAll());
@@ -89,6 +105,7 @@ public class WarehouseController {
 	}
 
 	@RequestMapping(value = "/add/delivery")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String addDelivery(Model model) {
 		Delivery delivery = new Delivery();
 		delivery.setStatus("Unfulfilled");
@@ -103,12 +120,14 @@ public class WarehouseController {
 	}
 
 	@RequestMapping(value = "/delete/delivery/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteDelivery(@PathVariable("id") Long deliveryId, Model model) {
 		drepository.deleteById(deliveryId);
 		return "redirect:http://localhost:8080/deliverylist";
 	}
 
 	@RequestMapping(value = "/edit/delivery/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String editDelivery(@PathVariable("id") Long deliveryId, Model model) {
 		model.addAttribute("delivery", drepository.findById(deliveryId));
 		return "editdelivery";
@@ -124,11 +143,12 @@ public class WarehouseController {
 		return drepository.findById(deliveryId);
 	}
 	
-	// Busket controller
+	// Basket controller
 	
-	@RequestMapping(value = "/busket/delivery/{id}", method = RequestMethod.GET)
-	public String busketList(@PathVariable("id") Long deliveryId, Model model) {
-		return "busket";
+	@RequestMapping(value = "/basket/delivery/{id}", method = RequestMethod.GET)
+	public String basketList(@PathVariable("id") Long deliveryId, Model model) {
+		model.addAttribute("delivery", drepository.findById(deliveryId));
+		return "basket";
 	}
 
 }
