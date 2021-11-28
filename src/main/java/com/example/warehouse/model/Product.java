@@ -9,14 +9,9 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-
-import com.example.warehouse.model.Category;
 
 @Entity
 public class Product {
@@ -24,8 +19,11 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotNull
+	@Size(min = 1, max = 30)
 	private String productNumber;
 	
+	@NotNull
 	private String productName;
 	
 	private double weight;
