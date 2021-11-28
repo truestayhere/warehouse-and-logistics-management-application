@@ -35,12 +35,10 @@ public class WarehouseApplication {
 			Delivery delivery1 = new Delivery("211111", "30.11.2021", "12:00", "Empty", "Unfulfilled");
 			Delivery delivery2 = new Delivery("311341", "14.12.2021", "16:30", "Empty", "Unfulfilled");
 			Delivery delivery3 = new Delivery("271441", "05.10.2021", "14:00", "Empty", "Fulfilled");
-			Delivery delivery4 = new Delivery("000000", "00.00.0000", "00:00", "Empty", "Delivered");
 
 			drepository.save(delivery1);
 			drepository.save(delivery2);
 			drepository.save(delivery3);
-			drepository.save(delivery4);
 			
 			
 			// Create new categories
