@@ -75,7 +75,7 @@ public class WarehouseController {
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteProduct(@PathVariable("id") Long productId, Model model) {
 		prepository.deleteById(productId);
-		return "redirect:productlist";
+		return "redirect:../productlist";
 	}
 
 	@RequestMapping(value = "/edit/product/{id}", method = RequestMethod.GET)
@@ -116,14 +116,14 @@ public class WarehouseController {
 	@RequestMapping(value = "/save/delivery", method = RequestMethod.POST)
 	public String saveDelivery(Delivery delivery) {
 		drepository.save(delivery);
-		return "redirect:deliverylist";
+		return "redirect:../deliverylist";
 	}
 
 	@RequestMapping(value = "/delete/delivery/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteDelivery(@PathVariable("id") Long deliveryId, Model model) {
 		drepository.deleteById(deliveryId);
-		return "redirect:deliverylist";
+		return "redirect:../deliverylist";
 	}
 
 	@RequestMapping(value = "/edit/delivery/{id}", method = RequestMethod.GET)
