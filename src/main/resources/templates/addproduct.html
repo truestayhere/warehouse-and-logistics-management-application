@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Add product</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel='stylesheet' href='/css/bootstrap.min.css' type='text/css'
+	media='all'>
+</head>
+<body align="center">
+	<h2>Add product</h2>
+	<div style="margin: 20px 380px 10px 380px;">
+		<form th:object="${product}" th:action="@{~/save/product}" action="#"
+			method="post" class="mb-3">
+			<div class="form-group">
+			<label for="productNumber" class="form-label">Product number</label>
+			<input type="text" id="productNumber" th:field="*{productNumber}"
+				class="form-control" />
+			</div>
+			<div class="form-group">
+			<label for="productName" class="form-label">Product name</label> <input type="text"
+				id="productName" th:field="*{productName}" class="form-control" />
+			</div>
+			<div class="form-group">
+			<label for="weight" class="form-label">Weight(per unit)</label> <input type="text"
+				id="weight" th:field="*{weight}" class="form-control" />
+			</div>
+			<div class="form-group">
+			<label for="quantity" class="form-label">Quantity</label> <input type="text"
+				id="quantity" th:field="*{quantity}" class="form-control" />
+			</div>
+			<div class="form-group">
+			<label for="cost" class="form-label">Cost</label> <input type="text" id="cost"
+				th:field="*{cost}" class="form-control" />
+			</div>
+			<div class="form-group">
+			<label for="categorylist">Category</label>
+			 <select id="categorylist" th:field="*{category}" class="form-control">
+       			<option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+    		</select></div>
+			<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Save"></input>
+			</div>
+		</form>
+	</div>
+</body>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</html>

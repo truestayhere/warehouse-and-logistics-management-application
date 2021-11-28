@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Deliverylist</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body style="margin: 30px 200px 10px 200px;">
+	<h1>Deliveries</h1>
+	<div>
+		<table class="table table-striped">
+			<tr>
+				<th>ID</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Status</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr th:each="delivery : ${deliveries}">
+				<td th:text="${delivery.deliveryNumber}"></td>
+				<td th:text="${delivery.date}"></td>
+				<td th:text="${delivery.time}"></td>
+				<td th:text="${delivery.status}"></td>
+				<td><a
+					th:href="@{/busket/delivery/{id}(id=${delivery.deliveryid})}"
+					class="btn btn-info btn-sm">Busket</a></td>
+				<td>
+					<div class="btn-group-sm">
+						<a th:href="@{/delete/delivery/{id}(id=${delivery.deliveryid})}"
+							class="btn btn-danger btn-sm">Delete</a> <a
+							th:href="@{/edit/delivery/{id}(id=${delivery.deliveryid})}"
+							class="btn btn-success btn-sm">Edit</a>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="btn-group-sm">
+		<a href="/" class="btn btn-link">Main page</a> <a href="/add/delivery"
+			class="btn btn-success">Add Delivery</a>
+	</div>
+	<br>
+	<br>
+</body>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</html>
