@@ -79,7 +79,7 @@ public class WarehouseController {
 	}
 
 	@RequestMapping(value = "/edit/product/{id}", method = RequestMethod.GET)
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String editProduct(@PathVariable("id") Long productId, Model model) {
 		model.addAttribute("product", prepository.findById(productId));
 		model.addAttribute("categories", crepository.findAll());
