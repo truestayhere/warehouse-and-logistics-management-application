@@ -68,14 +68,14 @@ public class WarehouseController {
 	@RequestMapping(value = "/save/product", method = RequestMethod.POST)
 	public String saveProduct(Product product) {
 		prepository.save(product);
-		return "https://warehouse-manage-app.herokuapp.com/productlist";
+		return "redirect:https://warehouse-manage-app.herokuapp.com/productlist";
 	}
 
 	@RequestMapping(value = "/delete/product/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteProduct(@PathVariable("id") Long productId, Model model) {
 		prepository.deleteById(productId);
-		return "https://warehouse-manage-app.herokuapp.com/productlist";
+		return "redirect:https://warehouse-manage-app.herokuapp.com/productlist";
 	}
 
 	@RequestMapping(value = "/edit/product/{id}", method = RequestMethod.GET)
@@ -123,7 +123,7 @@ public class WarehouseController {
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteDelivery(@PathVariable("id") Long deliveryId, Model model) {
 		drepository.deleteById(deliveryId);
-		return "https://warehouse-manage-app.herokuapp.com/deliverylist";
+		return "redirect:https://warehouse-manage-app.herokuapp.com/deliverylist";
 	}
 
 	@RequestMapping(value = "/edit/delivery/{id}", method = RequestMethod.GET)
