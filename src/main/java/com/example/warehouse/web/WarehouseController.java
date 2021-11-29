@@ -116,7 +116,7 @@ public class WarehouseController {
 	@RequestMapping(value = "/save/delivery", method = RequestMethod.POST)
 	public String saveDelivery(Delivery delivery) {
 		drepository.save(delivery);
-		return "https://warehouse-manage-app.herokuapp.com/productlist";
+		return "redirect:https://warehouse-manage-app.herokuapp.com/deliverylist";
 	}
 
 	@RequestMapping(value = "/delete/delivery/{id}", method = RequestMethod.GET)
